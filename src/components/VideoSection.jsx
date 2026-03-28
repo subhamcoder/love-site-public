@@ -24,6 +24,9 @@ export default function VideoSection() {
             <video
               src="/videos/our-video.mp4"
               controls
+              autoPlay
+              muted
+              loop
               playsInline
               preload="metadata"
               poster="/videos/video-poster.jpg"

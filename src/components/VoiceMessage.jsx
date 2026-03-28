@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 
-export default function VoiceMessage() {
+export default function VoiceMessage({ setIsVoicePlaying }) {
   const audioRef = useRef(null)
   const [isPlaying, setIsPlaying] = useState(false)
   const [progress, setProgress] = useState(0)
@@ -11,8 +11,10 @@ export default function VoiceMessage() {
 
     if (isPlaying) {
       audioRef.current.pause()
+      setIsVoicePlaying(false)
     } else {
       audioRef.current.play().catch(() => {})
+      setIsVoicePlaying(true)
     }
     setIsPlaying(!isPlaying)
   }
@@ -26,6 +28,7 @@ export default function VoiceMessage() {
 
   const handleEnded = () => {
     setIsPlaying(false)
+    setIsVoicePlaying(false)
     setProgress(0)
   }
 
